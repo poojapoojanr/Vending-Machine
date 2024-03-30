@@ -1,0 +1,13 @@
+package items;
+
+public enum ItemType {
+        OREO,
+        PARLEG,
+        JUICE,
+        SODA,
+        CHOCOLATE,
+        LOLIPOP,
+        CANDY,
+        ICECREAM;
+
+}
