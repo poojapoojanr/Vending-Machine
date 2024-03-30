@@ -1,0 +1,70 @@
+import coin.Coin;
+import items.*;
+import vendingmachine.*;
+import items.ItemType;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        VendingMachine vendingMachine = new VendingMachine();
+
+        System.out.println("Fill the inventory");
+        fillInventory(vendingMachine);
+
+        System.out.println("Display the Inventory");
+        displayInventory(vendingMachine);
+
+        VendingMachineState vendingMachineState = vendingMachine.getVendingMachineState();
+        vendingMachineState.insertcoin(vendingMachine, Coin.FIFTY);
+        vendingMachineState.insertcoin(vendingMachine,Coin.TWENTY);
+        vendingMachineState.chooseProduct(vendingMachine, 20);
+
+        displayInventory(vendingMachine);
+
+    }
+
+
+    private static void fillInventory(VendingMachine vendingMachine) {
+        ItemShelf[] itemShelfSlots = vendingMachine.getInventory().getInventory();
+        for(int i=0;i<itemShelfSlots.length;i++) {
+            Items item = new Items();
+            if (i == 0 || i == 8) {
+                item.setItemType(ItemType.OREO);
+                item.setPrice(30);
+            } else if (i == 1 || i == 9) {
+                item.setItemType(ItemType.JUICE);
+                item.setPrice(40);
+            } else if (i == 2) {
+                item.setItemType(ItemType.LOLIPOP);
+                item.setPrice(45);
+            } else if (i == 3) {
+                item.setItemType(ItemType.CANDY);
+                item.setPrice(20);
+            } else if (i == 4) {
+                item.setItemType(ItemType.CHOCOLATE);
+                item.setPrice(20);
+            } else if (i == 5) {
+                item.setItemType(ItemType.ICECREAM);
+                item.setPrice(60);
+            } else if (i == 6) {
+                item.setItemType(ItemType.PARLEG);
+                item.setPrice(5);
+            } else if (i == 7) {
+                item.setItemType(ItemType.SODA);
+                item.setPrice(5);
+            }
+            itemShelfSlots[i].setItems(item);
+            itemShelfSlots[i].setSoldOut(false);
+        }
+    }
+
+    private static void displayInventory(VendingMachine vendingMachine) {
+        ItemShelf[] itemShelfSlots = vendingMachine.getInventory().getInventory();
+        for(ItemShelf shelf: itemShelfSlots) {
+            System.out.println("Item Code: " + shelf.getItemCode() + " Item: " + shelf.getItems().getItemType() +" Price: " + shelf.getItems().getPrice() +
+                    " isAvailable:" + !shelf.isSoldOut());
+        }
+    }
+
+
+}
+
