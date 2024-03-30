@@ -1,0 +1,25 @@
+package items;
+
+public class ItemShelf {
+    public  int itemcode;
+    private Items items;
+    private boolean soldOut;
+    public Items getItems(){
+        return this.items;
+    }
+    public void setItems(Items items){
+        this.items=items;
+    }
+    public int getItemCode(){
+       return  this.itemcode;
+    }
+    public void setItemcode(int itemcode){
+        this.itemcode=itemcode;
+    }
+    public boolean isSoldOut(){
+       return  this.soldOut;
+    }
+    public void setSoldOut(boolean soldOut){
+        this.soldOut=soldOut;
+    }
+}
